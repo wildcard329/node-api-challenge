@@ -1,5 +1,6 @@
 const express = require("express");
 const db = require("./actionModel");
+const project = require("./projectModel")
 
 const router = express.Router();
 
@@ -16,7 +17,7 @@ router.get('/', (req, res) => {
     })
   });
 
-  router.get('/:id', (req, res) => {
+  router.get('/:id/', (req, res) => {
       db.get(req.params.id)
       .then(action => {
           if(action) {
@@ -46,7 +47,7 @@ router.get('/', (req, res) => {
       })
   })
 
-  router.delete('/:id', (req, res) => {
+  router.delete('/:id/', (req, res) => {
       db.remove(req.params.id)
       .then(count => {
           if (count > 0) {
@@ -63,7 +64,7 @@ router.get('/', (req, res) => {
       })
   })
 
-  router.put('/:id', (req, res) => {
+  router.put('/:id/', (req, res) => {
       const changes = req.body
       db.update(req.params.id, changes)
       .then(action => {
@@ -80,5 +81,6 @@ router.get('/', (req, res) => {
         })
     })
   })
+
 
 module.exports = router;

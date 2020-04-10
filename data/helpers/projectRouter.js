@@ -34,6 +34,7 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/', (req, res) => {
+    console.log(req.body)
     db.insert(req.body)
     .then(project => {
         res.status(201).json(project);
@@ -81,8 +82,9 @@ router.put('/:id', (req, res) => {
     })
 })
 
-router.get("/:id", (req, res) => {
-    db.getProjectActions(project_id) 
+router.get("/:id/actions", (req, res) => {
+    const id = req.params.id
+    db.getProjectActions(id) 
     .then(project => {
         if(project) {
             res.status(200).json(project);
