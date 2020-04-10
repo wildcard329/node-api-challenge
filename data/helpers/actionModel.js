@@ -8,6 +8,10 @@ module.exports = {
   remove,
 };
 
+function get() {
+  return db('actions')
+}
+
 function get(id) {
   let query = db('actions');
 
